@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.nio.file.Files;
 import java.util.Collection;
 
 import static org.junit.Assert.assertEquals;
@@ -20,7 +21,7 @@ public class ConfigTest {
     private File createTempFile(String prefix, String suffix) {
         final File tempFile;
         try {
-            tempFile = File.createTempFile(prefix, "." + suffix, new File("target"));
+            tempFile = Files.createTempFile(new File("target").toPath(),prefix,"." + suffix).toFile();
            tempFile.deleteOnExit();
             return tempFile;
         } catch (IOException e) {
